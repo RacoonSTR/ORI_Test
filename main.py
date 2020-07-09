@@ -2,13 +2,19 @@ import csv
 import json
 import os
 
-def load_internal(folder):
+def read_internal(folder):
     files = []
-    filenames = os.listdir(folder)
+    filenames = os.listdir(folder + '/markup')
     for filename in filenames:
-        with open('/'.join([folder, filename]), 'r') as file:
+        with open('/'.join([folder, 'markup', filename]), 'r') as file:
             files.append({'filename': filename, 'markups': json.loads(file.read())})
     return files
+
+def read_internal_csv(folder):
+    with open(folder + '/markup.csv', 'r') as file:
+        csvreader = csv.DictReader(file)
+        rows = list(csvreader)
+    return rows
 
 def internal_to_internal_csv(files):
     csv_string = 'filename,width,height,class,xmin,ymin,xmax,ymax'
@@ -26,9 +32,10 @@ def save_internal_csv(csv_string, path):
     return
 
 def main():
-    folder = 'markup/markup'
+    folder = 'markup'
     path = 'result/markup.csv'
-    save_internal_csv(internal_to_internal_csv(load_internal(folder)), path)
+    save_internal_csv(internal_to_internal_csv(read_internal(folder)), path)
+    read_internal_csv('result')
 
 if __name__ == "__main__":
     main()
