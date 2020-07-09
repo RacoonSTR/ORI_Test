@@ -19,6 +19,8 @@ def internal_to_internal_csv(files):
     return csv_string
 
 def save_internal_csv(csv_string, path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+
     with open(path, 'w') as file:
         file.write(csv_string)
     return
