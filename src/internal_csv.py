@@ -1,9 +1,12 @@
 import csv
 import os
+from pathlib import Path
 
 import common
 
-def to_pascalvoc(source_folder, dest_folder):
+working_dir = os.path.dirname(__file__)
+
+def to_pascal_voc(source_folder, dest_folder):
     data = read_internalcsv(source_folder)
 
     files_dict = {}
@@ -14,10 +17,10 @@ def to_pascalvoc(source_folder, dest_folder):
         
         files_dict[markup['filename']]['objects'] += get_object_xml(markup) + '\n'
     
-    xml_string = ''
-
+    xml_string = '<annotations>\n'
     for file_name in files_dict:
         xml_string += get_annotation_xml(file_name, files_dict[file_name])
+    xml_string += '</annotations>'
 
     common.save_file(xml_string, dest_folder + '/markup.xml')
     common.copy_folder(source_folder + '/images', dest_folder + '/images')
@@ -29,9 +32,9 @@ def read_internalcsv(folder):
     return rows
 
 def get_object_xml(obj):
-    with open('templates/pascal_voc_object_template.xml', 'r') as obj_xml:
+    with open(working_dir + '/templates/pascal_voc_object_template.xml', 'r') as obj_xml:
         return obj_xml.read().format(xmin=obj['xmin'], xmax=obj['xmax'], ymin=obj['ymin'], ymax=obj['ymax'], name=obj['class'])
 
 def get_annotation_xml(file_path, img_data):
-    with open('templates/pascal_voc_annotation_template.xml', 'r') as annotation_xml:
+    with open(working_dir + '/templates/pascal_voc_annotation_template.xml', 'r') as annotation_xml:
         return annotation_xml.read().format(filename=img_data['filename'], path=img_data['path'], objects=img_data['objects'], width=img_data['width'], height=img_data['height'])
