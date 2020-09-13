@@ -1,0 +1,15 @@
+<annotation>	
+	<folder>JPEGImages</folder>	
+	<filename>{filename}</filename>
+	<path>{path}</path>	
+	<source>
+		<database>ORI_Markup</database>
+	</source>	
+	<size>
+		<width>{width}</width>
+		<height>{height}</height>
+		<depth>3</depth>
+	</size>	
+	<segmented>0</segmented>
+	{objects}
+</annotation>
