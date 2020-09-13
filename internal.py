@@ -4,10 +4,12 @@ from PIL import Image
 
 import common
 
+
 def to_internal_csv(source_folder, dest_folder):
     data = read_internal(source_folder)
 
     csv_string = 'filename,width,height,class,xmin,ymin,xmax,ymax'
+
     for img_data in data:
         img = common.get_image_data('/'.join([source_folder, 'images', img_data['filename']]))
 
@@ -17,6 +19,7 @@ def to_internal_csv(source_folder, dest_folder):
 
     common.save_file(csv_string, dest_folder + '/markup.csv')
     common.copy_folder(source_folder + '/images', dest_folder + '/images')
+
 
 def read_internal(folder):
     files = []
