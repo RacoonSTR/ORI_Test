@@ -10,4 +10,4 @@
 ```sudo docker run -e SOURCE_FOLDER='/data/markup' -e DEST_FOLDER='/result/markup' -e SOURCE_FORMAT='internal' -e DEST_FORMAT='internal_csv' ori_test:1.0```
 
 ### Note
-At this time, source data is taken from host using Dockerfile and located in 'data/markup' directory. I'm working it 
+At this time, source data is taken from host using Dockerfile and located in 'data/markup' directory. I'm working on it 
