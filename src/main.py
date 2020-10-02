@@ -7,10 +7,10 @@ FORMATS = {
     'PASCAL_VOC': 'pascal_voc'
 }
 
-SOURCE_FOLDER = os.environ('SOURCE_FOLDER')
-DEST_FOLDER = os.environ('DEST_FOLDER')
-SOURCE_FORMAT = os.environ('SOURCE_FORMAT')
-DEST_FORMAT = os.environ('DEST_FORMAT')
+SOURCE_FOLDER = os.environ['SOURCE_FOLDER']
+DEST_FOLDER = os.environ['DEST_FOLDER']
+SOURCE_FORMAT = os.environ['SOURCE_FORMAT']
+DEST_FORMAT = os.environ['DEST_FORMAT']
 
 def main():
     try:
